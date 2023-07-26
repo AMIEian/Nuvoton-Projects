@@ -1,0 +1,10 @@
+".\Output\UART0.obj",
+".\Output\sys.obj",
+".\Output\uart.obj",
+".\Output\timer.obj",
+".\Output\common.obj",
+".\Output\STARTUP.obj" 
+TO ".\Output\UART0" 
+
+PRINT(".\LST\UART0.map") DISABLEWARNING (16) 
+REMOVEUNUSED 

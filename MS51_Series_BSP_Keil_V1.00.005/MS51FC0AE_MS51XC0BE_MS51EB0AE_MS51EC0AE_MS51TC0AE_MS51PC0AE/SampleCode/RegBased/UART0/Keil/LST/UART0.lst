@@ -1,0 +1,80 @@
+C51 COMPILER V9.60.0.0   UART0                                                             10/15/2022 20:13:59 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE UART0
+OBJECT MODULE PLACED IN .\Output\UART0.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\UART0.c LARGE OMF2 OPTIMIZE(7,SPEED) BROWSE INCDIR(..\..\..\..\Librar
+                    -y\Device\Include;..\..\..\..\Library\StdDriver\inc) DEBUG PRINT(.\LST\UART0.lst) TABS(2) OBJECT(.\Output\UART0.obj)
+
+line level    source
+
+   1          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   2          /*                                                                                                        
+             - */
+   3          /* SPDX-License-Identifier: Apache-2.0                                                                    
+             - */
+   4          /* Copyright(c) 2020 Nuvoton Technology Corp. All rights reserved.                                        
+             - */
+   5          /*                                                                                                        
+             - */
+   6          /*--------------------------------------------------------------------------------------------------------
+             --*/
+   7          
+   8          
+   9          /*********************************************************************************************************
+             -***/
+  10          /*  File Function: MS51 UART0 initial demo code                                                           
+             -  */
+  11          /*********************************************************************************************************
+             -***/
+  12          #include "MS51_32K.h"
+  13          
+  14          
+  15          /*******************************************************************************
+  16           * FUNCTION_PURPOSE: Main function 
+  17           ******************************************************************************/
+  18          void main (void)
+  19          {
+  20   1      /* Modify HIRC to 24MHz for UART baud rate function only */
+  21   1         MODIFY_HIRC(HIRC_24);
+  22   1          
+  23   1         P35_QUASI_MODE;
+  24   1         P06_PUSHPULL_MODE;
+  25   1         P07_INPUT_MODE;
+  26   1         UART_Open(24000000,UART0_Timer3,115200);
+  27   1         ENABLE_UART0_INTERRUPT;
+  28   1         ENABLE_GLOBAL_INTERRUPT;
+  29   1      
+  30   1          while(1)
+  31   1          {
+  32   2              UART_Send_Data(UART0,0x05);      /* check uart.c*/
+  33   2              Timer0_Interrupt_Init(24000000,100,1000);
+  34   2              P35 = 1;
+  35   2              Timer0_Interrupt_Init(24000000,100,1000);
+  36   2              P35 = 0;
+  37   2              Timer0_Interrupt_Init(24000000,100,1000);
+  38   2          }
+  39   1          
+  40   1      }
+  41            
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    157    ----
+C51 COMPILER V9.60.0.0   UART0                                                             10/15/2022 20:13:59 PAGE 2   
+
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
